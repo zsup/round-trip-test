@@ -1,0 +1,25 @@
+{
+  "name": "round-trip-test",
+  "version": "0.0.1",
+  "author": "Zach Supalla <zach@spark.io>",
+  "description": "Testing a round trip message between the Spark Cloud and Spark Core.",
+  "scripts": {
+    "start": "coffee ping.coffee",
+    "test": "vows --spec --isolate",
+    "predeploy": "Commence testing!"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cazzo/round-trip-test.git"
+  },
+  "dependencies" : {
+    "sparky"   :  "*",
+    "moment"   :  "*",
+    "winston"  :  "*"
+  },
+  "analyze": false,
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.10"
+  }
+}
