@@ -8,13 +8,6 @@ void setup() {
 }
 
 void loop() {
-  if (client.connected()) {
-    if (client.available()) {
-      char pin = client.read();
-      char level = client.read();
-      digitalWrite(pin - '0' + D0, 'h' == level ? HIGH : LOW);
-    }
-  }
 }
 
 int connect_to_my_server(String ip) {

@@ -19,15 +19,15 @@ winston.add winston.transports.File,
 
 # Create the basic TCP server.
 server = net.createServer (c) ->
-  console.log "Something connected!"
+  winston.log 'info', "Something connected!"
   c.on 'end', ->
-    console.log "Goodbye, something."
+    winston.log 'info', "Goodbye, something."
   c.on 'data', (data) ->
     incoming++
     report()
 
 server.listen 9000, ->
-  console.log "Server is live"
+  winston.log 'info', "Server is live"
 
 # Set up Sparky
 sparky = new Sparky
@@ -39,10 +39,10 @@ sparky.run 'connect', ipAddress, ->
 
 # Our functions for reporting and 
 report = ->
-  console.log moment().format 'h:mm:ss a'
-  console.log "Outgoing: #{outgoing}"
-  console.log "Incoming: #{incoming}"
-  console.log "-----"
+  winston.log 'info', moment().format 'h:mm:ss a'
+  winston.log 'info', "Outgoing: #{outgoing}"
+  winston.log 'info', "Incoming: #{incoming}"
+  winston.log 'info', "-----"
 
 count = ->
   sparky.run('ping')
