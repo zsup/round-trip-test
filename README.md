@@ -10,5 +10,6 @@ Requires Node.js, npm, and coffeescript. Your computer and your Spark Core must 
 
 1. Copy the contents of `pong.cpp` into the [Spark Build](https://www.spark.io/build) web IDE 
 2. Flash the code to your Spark Core
-3. Prep `ping.coffee` by adding your `Device ID`, `Access Token`, and `Local IP address` at the top of the file.
-4. Run `coffee ping.coffee`. If your Core is working as expected, it should connect to your computer almost immediately.
+3. `npm install`
+4. Prep `ping.coffee` by adding your `Device ID`, `Access Token`, and `Local IP address` at the top of the file.
+5. Run `coffee ping.coffee`. If your Core is working as expected, it should connect to your computer almost immediately.

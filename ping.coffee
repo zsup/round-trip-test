@@ -1,7 +1,7 @@
 # A few environment variables to set
-deviceId = 'INSERT_DEVICE_ID'
-token = 'INSERT_ACCESS_TOKEN'
-ipAddress = 'INSERT_LOCAL_IP_ADDRESS'
+deviceId = '55ff67064989495333582587'
+token = '40bbf433bec0decdaf6f1c62226128aec5a11134'
+ipAddress = '10.0.1.30'
 
 # Requirements.
 net = require 'net'
