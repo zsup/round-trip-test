@@ -1,7 +1,7 @@
 # A few environment variables to set
-deviceId = '55ff67064989495333582587'
-token = '40bbf433bec0decdaf6f1c62226128aec5a11134'
-ipAddress = '10.0.1.30'
+deviceId = 'INSERT_DEVICE_ID'
+token = 'INSERT_ACCESS_TOKEN'
+ipAddress = 'INSERT_LOCAL_IP'
 
 # Requirements.
 net = require 'net'
@@ -35,17 +35,18 @@ sparky = new Sparky
   token: token
 
 sparky.run 'connect', ipAddress, ->
-  setTimeout count, 5000
+  setTimeout ping, 5000
 
-# Our functions for reporting and 
+# Report the counts whenever they change
 report = ->
   winston.log 'info', moment().format 'h:mm:ss a'
   winston.log 'info', "Outgoing: #{outgoing}"
   winston.log 'info', "Incoming: #{incoming}"
   winston.log 'info', "-----"
 
-count = ->
+# Ping the Spark Core every 5s
+ping = ->
   sparky.run('ping')
   outgoing++
   report()
-  setTimeout count, 5000
+  setTimeout ping, 5000
