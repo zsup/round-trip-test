@@ -1,3 +1,8 @@
+# A few environment variables to set
+deviceId = 'INSERT_DEVICE_ID'
+token = 'INSERT_ACCESS_TOKEN'
+ipAddress = 'INSERT_LOCAL_IP_ADDRESS'
+
 # Create the basic TCP server.
 net = require 'net'
 server = net.createServer (c) ->
@@ -9,24 +14,27 @@ server = net.createServer (c) ->
     report()
 
 server.listen 9000, ->
-  console.log "Server is bound"
+  console.log "Server is live"
 
 # Set up Sparky
 Sparky = require 'sparky'
 
 sparky = new Sparky
-  deviceId: '55ff67064989495333582587',
-  token: '40bbf433bec0decdaf6f1c62226128aec5a11134'
+  deviceId: deviceId,
+  token: token
 
-console.log server.address()
-
-sparky.run 'connect', '10.0.1.30', ->
+sparky.run 'connect', ipAddress, ->
   setTimeout count, 5000
+
+# Other helper stuff
+
+moment = require 'moment'
 
 outgoing = 0;
 incoming = 0;
 
 report = ->
+  console.log moment().format 'h:mm:ss a'
   console.log "Outgoing: #{outgoing}"
   console.log "Incoming: #{incoming}"
   console.log "-----"
