@@ -12,10 +12,16 @@ winston = require 'winston'
 # Global variables, for counting stuff.
 outgoing = 0;
 incoming = 0;
+val = 0;
 
 # Set up logging.
 winston.add winston.transports.File,
   filename: 'roundtrip.log'
+
+# Set up Sparky
+sparky = new Sparky
+  deviceId: deviceId,
+  token: token
 
 # Create the basic TCP server.
 server = net.createServer (c) ->
@@ -26,16 +32,9 @@ server = net.createServer (c) ->
     incoming++
     report()
 
-server.listen 9000, ->
+server.listen 9001, ->
   winston.log 'info', "Server is live"
-
-# Set up Sparky
-sparky = new Sparky
-  deviceId: deviceId,
-  token: token
-
-sparky.run 'connect', ipAddress, ->
-  setTimeout ping, 5000
+  toggle()
 
 # Report the counts whenever they change
 report = ->
@@ -45,8 +44,10 @@ report = ->
   winston.log 'info', "-----"
 
 # Ping the Spark Core every 5s
-ping = ->
-  sparky.run('ping')
+toggle = ->
+  winston.log 'info', "Toggle!"
+  val = 1 - val
+  sparky.digitalWrite('D7', val)
   outgoing++
   report()
-  setTimeout ping, 5000
+  setTimeout toggle, 2000
